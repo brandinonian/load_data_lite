@@ -1,37 +1,44 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useEffect } from 'react';
-import 'react-native-reanimated';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { Drawer } from 'expo-router/drawer';
+import { DarkTheme, ThemeProvider } from '@react-navigation/native';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
-
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
-
-  useEffect(() => {
-    if (loaded) {
-      SplashScreen.hideAsync();
-    }
-  }, [loaded]);
-
-  if (!loaded) {
-    return null;
-  }
-
+export default function Layout() {
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+    <ThemeProvider value={DarkTheme}>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <Drawer screenOptions={{
+          headerTintColor: '#fff'
+        }}>
+          <Drawer.Screen
+            name="index"
+            options={{
+              drawerLabel: 'Home',
+              title: 'Home',
+            }}
+          />
+          <Drawer.Screen
+            name="factory/index"
+            options={{
+              drawerLabel: 'Factory Loads',
+              title: 'Factory Loads',
+            }}
+          />
+          <Drawer.Screen
+            name="custom/index"
+            options={{
+              drawerLabel: 'Custom Loads',
+              title: 'Custom Loads',
+            }}
+          />
+          <Drawer.Screen
+            name="components/index"
+            options={{
+              drawerLabel: 'Components',
+              title: 'Components',
+            }}
+          />
+        </Drawer>
+      </GestureHandlerRootView>
     </ThemeProvider>
   );
 }
