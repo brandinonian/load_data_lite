@@ -1,0 +1,18 @@
+export const Colors = {
+  bg_100: "#050a0a",
+  bg_200: "#1a1c1c",
+  bg_300: "#313636",
+  bg_400: "#434d4d",
+  bg_500: "#647373",
+  primary: "#248c8c",
+  secondary: "#235bba",
+  txt_100: "#e4ebf7",
+  txt_200: "#d1d5de",
+  txt_300: "#9b9da3",
+  txt_400: "#74798a",
+  txt_500: "#414657",
+  success: "#2a853f",
+  warning: "#dbc037",
+  error: "#e60b0b",
+  info: "#20d1d4",
+};
